@@ -1,0 +1,28 @@
+[app] (name=sonata)
+	[Minimized] {true}
+[end]
+[app] (name=fbrun)
+  [Position]	(CENTER)	{0 0}
+  [Layer]	{2}
+[end]
+[app] (name=Navigator) (class=Firefox) (role=browser)
+  [Dimensions]	{1191 1026}
+  [Position]	(UPPERLEFT)	{487 -1}
+  [Workspace]	{0}
+[end]
+[app] (Title=irc)
+  [Tab]		{no}
+  [Deco]	{NONE}
+  [Sticky]	{yes}
+[end]
+[app] (name=tkremind) (class=Tkremind)
+  [Position]	(UPPERLEFT)	{551 86}
+[end]
+[app] (name=claws-mail) (class=Claws-mail) (role=mainwindow)
+  [Dimensions]	{1192 1023}
+  [Position]	(UPPERLEFT)	{486 0}
+  [Workspace]	{3}
+[end]
+[app] (name=alltray) (class=Alltray)
+  [Position]	(UPPERLEFT)	{487 146}
+[end]

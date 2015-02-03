@@ -1,0 +1,13 @@
+nodump = /usr/ports
+nodump = /usr/obj
+nodump = /usr/src
+nodump = /usr/local/jails
+
+device = /dev/ufs/ROOT
+device = /dev/ufs/VAR
+device = /dev/ufs/USR
+
+mounten = ja
+mountpfad = /data
+ziel = /data/backup
+#zip  = ja

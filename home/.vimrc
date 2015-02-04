@@ -58,12 +58,11 @@ set statusline=%F\ %m%r%y%=%l-%v/%L
 "Einstellungen fuer Perl
 "===========================
 "Kein Zeilenumbruch
+autocmd FileType perl set tw=0
 
 "Um statt Tabs Spaces zu setzen
-"set expandtab
-"set softtabstop=4 "Laenge der 'softtabstops'
-
-autocmd FileType perl set tw=0
+set expandtab
+set softtabstop=4 "Laenge der 'softtabstops'
 
 autocmd FileType c set tw=0
 autocmd FileType c set autowrite

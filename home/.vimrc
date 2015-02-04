@@ -3,6 +3,22 @@
 "Schaltet die volle VIM-Funktionalität frei
 set nocp
 
+"Definiere einige Tasten neu
+imap << <ESC>
+map! <F1> !
+map <F1> ! 
+map! <F2> "
+map <F2> "
+map <F4> $
+map! <F4> $
+map <F9> (
+map! <F9> (
+map <F10> )
+map! <F10> )
+
+"Krypto mit blowfish
+set cm=blowfish2
+
 "Aktiviert Syntax-Highlighting. 
 syntax on
 
@@ -30,14 +46,23 @@ set ruler
 "Befehle im Befehlsmodus beim Tippen anzeigen
 set showcmd
 
+"Statuszeile immer anzeigen
 set ls=2
+
+"Statuszeile setzen
 set statusline=%F\ %m%r%y%=%l-%v/%L
+
+"let g:GPGDefaultRecipients = ["MAILADRESSE"]
+
+"===========================
+"Einstellungen fuer Perl
+"===========================
+"Kein Zeilenumbruch
 
 "Um statt Tabs Spaces zu setzen
 "set expandtab
-"set softtabstop=4 "Länge der 'softtabstops'
+"set softtabstop=4 "Laenge der 'softtabstops'
 
-"let g:GPGDefaultRecipients = ["MAILADRESSE"]
 autocmd FileType perl set tw=0
 
 autocmd FileType c set tw=0

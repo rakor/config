@@ -8,8 +8,8 @@
 alias h		history 25
 alias j		jobs -l
 alias la	ls -a
-alias lf	ls -FA
-alias ll	ls -lA
+alias lf	ls -FAG
+alias ll	ls -lAhG
 
 # A righteous umask
 umask 22
@@ -19,9 +19,13 @@ set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/
 setenv	EDITOR	vi
 setenv	PAGER	more
 setenv	BLOCKSIZE	K
+setenv  CLICOLOR
+setenv 	LANG de_DE.UTF-8
 
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
+	set prompt="\n%{\033[0;32m%}%n@%m:%{\033[0;33m%}%~%{\033[1;36m%}>%{\033\[0;37m%} "
+	set autolist
 	set filec
 	set history = 100
 	set savehist = 100
@@ -30,5 +34,6 @@ if ($?prompt) then
 		bindkey "^W" backward-delete-word
 		bindkey -k up history-search-backward
 		bindkey -k down history-search-forward
+        bindkey -v
 	endif
 endif

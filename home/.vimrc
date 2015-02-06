@@ -17,7 +17,9 @@ map <F10> )
 map! <F10> )
 
 "Krypto mit blowfish
-set cm=blowfish2
+if v:version >= 704
+    set cm=blowfish2
+endif
 
 "Aktiviert Syntax-Highlighting. 
 syntax on

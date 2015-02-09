@@ -1,0 +1,3 @@
+#!/bin/sh
+# The mailserver should be set in /ets/hosts
+alpine -p "{mailserver/tls/user=$USER/novalidate-cert}remote_pinerc"

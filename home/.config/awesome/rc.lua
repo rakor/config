@@ -286,7 +286,7 @@ globalkeys = awful.util.table.join(
 -- My Keybindungs
     awful.key({ modkey,                 }, "s", function () awful.util.spawn_with_shell("uxterm -title su -fg rgb:00/00/00 -bg rgb:ff/72/56 -e su") end),
     awful.key({ modkey,                 }, "i", function () awful.util.spawn_with_shell("uxterm -title irssi -e /usr/bin/ssh -t -p1980 server ~/bin/irc") end),
-    awful.key({ modkey, "Control", "0"	}, "i", function () awful.util.spawn_with_shell("xlock") end),
+    awful.key({ modkey, "Control"   	}, "0", function () awful.util.spawn_with_shell("xlock") end),
 
 
     -- Prompt

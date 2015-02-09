@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+
+@offeneSessions = `tmux ls`;
+if ($#offeneSessions >= 0){
+	foreach (@offeneSessions){
+		$sessionname = $_;
+		$sessionname =~ s/^([^:]*).*/$1/;
+		unless ($sessionname =~ /irssi/ ){
+			exec "tmux attach -t $sessionname";
+		}
+	}
+}
+else {
+	exec "tmux -u new -s std";
+}
+print @offeneSessions;
+exec "tmux -u new  -s std"; 

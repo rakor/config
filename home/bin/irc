@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+@ausgabe = `tmux ls`;
+
+foreach (@ausgabe){
+    if ($_ =~ /^irssi:/){
+        exec "tmux -u attach -t irssi";
+        exit 0;
+    }
+}
+exec "tmux -u new -s irssi /usr/local/bin/irssi && tmux set-option -t irssi status off";
+

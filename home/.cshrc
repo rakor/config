@@ -29,6 +29,7 @@ if ($?prompt) then
 	set promptchars = "%#"
 	set autolist
 	set filec
+    set nobeep
 	set history = 1000
 	set savehist = (1000 merge)
 	set mail = (/var/mail/$USER)

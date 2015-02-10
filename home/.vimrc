@@ -51,6 +51,9 @@ set incsearch
 "Suchtreffer hervorheben
 set hlsearch
 
+"Keine Gross/Kleinschreibung
+set ignorecase
+
 "kein Piepsen bei Fehlern
 set noerrorbells
 

@@ -1,5 +1,3 @@
-# $FreeBSD: releng/10.1/share/skel/dot.profile 266029 2014-05-14 15:23:06Z bdrewery $
-#
 # .profile - Bourne Shell startup script for login shells
 #
 # see also sh(1), environ(7).

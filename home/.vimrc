@@ -3,6 +3,15 @@
 "Schaltet die volle VIM-Funktionalität frei
 set nocp
 
+"Einige Spezialitaeten fuer Windowssysteme
+if has("win32") || has("win64")
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin 
+    "Open GVim im Vollbild
+    au GUIEnter * simalt ~x
+endif
+
 "Definiere einige Tasten neu
 imap << <ESC>
 map! <F1> !
@@ -15,6 +24,9 @@ map <F9> (
 map! <F9> (
 map <F10> )
 map! <F10> )
+
+"Diffs nebeneinander sauber anzeigen
+set diffopt=vertical,filler
 
 "Krypto mit blowfish
 if v:version >= 704
@@ -42,6 +54,9 @@ set hlsearch
 "kein Piepsen bei Fehlern
 set noerrorbells
 
+"Lieber flackern als piepsen
+set visualbell
+
 "Zeilennummer anzeigen
 set ruler
 
@@ -54,21 +69,29 @@ set ls=2
 "Statuszeile setzen
 set statusline=%F\ %m%r%y%=%l-%v/%L
 
-"let g:GPGDefaultRecipients = ["MAILADRESSE"]
+"Zeilennummern anzeigen
+set number
 
-"===========================
-"Einstellungen fuer Perl
-"===========================
-"Kein Zeilenumbruch
-autocmd FileType perl set tw=0
+"let g:GPGDefaultRecipients = ["MAILADRESSE"]
 
 "Um statt Tabs Spaces zu setzen
 set expandtab
-set softtabstop=4 "Laenge der 'softtabstops'
 
-autocmd FileType c set tw=0
-autocmd FileType c set autowrite
+"Laenge der 'softtabstops'
+set softtabstop=4 
 
 "Setze GVIM Schrift
 set gfn=Monospace\ 8
 
+"Folding
+set fdm=syntax
+set nofoldenable 
+
+"=========================================
+"Einstellungen fuer bestimmte Dateiformate
+"=========================================
+autocmd FileType perl set tw=0
+autocmd FileType c set tw=0
+autocmd FileType c set autowrite
+autocmd FileType csv set tw=0
+autocmd FileType csv set nowrap 

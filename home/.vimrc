@@ -45,6 +45,9 @@ set tw=72
 "Tablaenge setzen auf # Zeichen
 set ts=4
 
+"RegExp magisch machen
+set magic
+
 "Suchetreffer während der Eingabe hervorheben.
 set incsearch
 
@@ -82,6 +85,18 @@ set expandtab
 
 "Laenge der 'softtabstops'
 set softtabstop=4 
+
+"Laenge der shifts
+set shiftwidth=4
+
+"Tabs sind vier Zeichen lang
+set tabstop=4
+
+"Automatisch einruecken
+set autoindent
+
+"Intelligentes einruecken
+set smartindent
 
 "Setze GVIM Schrift
 set gfn=Monospace\ 8

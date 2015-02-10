@@ -14,8 +14,8 @@ umask 22
 
 set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin $HOME/bin)
 
-setenv	EDITOR	vim
-setenv	PAGER	more
+setenv	EDITOR	    vim
+setenv  PAGER       less
 setenv	BLOCKSIZE	K
 setenv  CLICOLOR
 setenv 	LANG de_DE.UTF-8

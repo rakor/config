@@ -1,4 +1,4 @@
-workerconfig 3.4.0;
+workerconfig 3.5.2;
 global {
 	lang = "deutsch";
 	rows = 3;
@@ -8,9 +8,10 @@ global {
 		left {
 			hbartop = false;
 			hbarheight = 12;
-			vbarleft = false;
+			vbarleft = true;
 			vbarwidth = 12;
 			showheader = true;
+			pathentryontop = true;
 			displaysets {
 				permission;
 				size;
@@ -27,6 +28,7 @@ global {
 			vbarleft = true;
 			vbarwidth = 12;
 			showheader = true;
+			pathentryontop = true;
 			displaysets {
 				permission;
 				size;
@@ -38,7 +40,7 @@ global {
 			}
 		}
 	}
-	terminal = "xterm -e %s";
+	terminal = "uxterm -e %s";
 	ownerstyle = style1;
 	usestringfordirsize = false;
 	timesets {
@@ -62,6 +64,8 @@ global {
 	layout {
 		buttonsvertical = false;
 		listviewsvertical = false;
+		listviewweight = 5;
+		weighttoactive = false;
 	}
 	mouseconf {
 		selectbutton = 1;
@@ -83,7 +87,11 @@ global {
 		fstabfile = "";
 		mtabfile = "";
 		partfile = "";
+		requestaction = true;
+		ejectcommand = "";
+		closetraycommand = "";
 	}
+	useversionstringcompare = true;
 }
 colors {
 	statebar = 2,3;
@@ -101,9 +109,6 @@ colors {
 	requester = 1,0;
 	lvheader = 1,0;
 	lvbg = 2;
-	textview = 1,2;
-	textviewhighlighted = 1,0;
-	textviewselection = 2,1;
 	labelcolors {
 		color {
 			name = "1";
@@ -126,10 +131,24 @@ colors {
 			active = 4,7;
 		}
 	}
+	faces {
+		face {
+			name = "textview-bg";
+			color = 2;
+		}
+		face {
+			name = "textview-fg";
+			color = 1;
+		}
+		face {
+			name = "textview-highlight-bg";
+			color = 0;
+		}
+	}
 }
 startup {
 	left = ".";
-	right = "";
+	right = "$HOME";
 }
 fonts {
 	globalfont = "fixed";
@@ -138,17 +157,12 @@ fonts {
 	rightfont = "fixed";
 	textviewfont = "fixed";
 }
-xftfonts {
-	globalfont = "Sans-10";
-	buttonfont = "Sans-10";
-	leftfont = "Sans-10";
-	rightfont = "Sans-10";
-	textviewfont = "Sans-10";
-}
 clockbarsets {
 	modus = timespace;
 	updatetime = 1;
 	program = "";
+}
+pathjumpallowdirs {
 }
 paths {
 	path {
@@ -175,7 +189,7 @@ paths {
 	}
 	path {
 		position = 2;
-		title = "/tmp";
+		title = "/etc";
 		color = 1,0;
 		path = "/tmp";
 		shortkeys {
@@ -608,6 +622,7 @@ hotkeys {
 				buttonsvertical = false;
 				listviewsvertical = false;
 				listviewweight = 8;
+				weighttoactive = false;
 			}
 		}
 	}
@@ -625,6 +640,7 @@ hotkeys {
 				buttonsvertical = false;
 				listviewsvertical = true;
 				listviewweight = 5;
+				weighttoactive = false;
 				statebar;
 				listviews;
 				buttons;
@@ -859,7 +875,6 @@ buttons {
 				requestdest = false;
 				requestflags = false;
 				overwrite = normal;
-				copymode = normal;
 				preserveattr = true;
 			}
 		}
@@ -883,7 +898,6 @@ buttons {
 				requestdest = false;
 				requestflags = true;
 				overwrite = normal;
-				copymode = normal;
 				preserveattr = true;
 			}
 		}
@@ -906,7 +920,6 @@ buttons {
 				requestdest = false;
 				requestflags = false;
 				overwrite = normal;
-				copymode = normal;
 				preserveattr = true;
 			}
 		}
@@ -930,7 +943,6 @@ buttons {
 				requestdest = false;
 				requestflags = true;
 				overwrite = normal;
-				copymode = normal;
 				preserveattr = true;
 			}
 		}
@@ -1214,7 +1226,6 @@ buttons {
 				requestdest = false;
 				requestflags = false;
 				overwrite = normal;
-				copymode = normal;
 				preserveattr = true;
 			}
 		}
@@ -2655,6 +2666,7 @@ buttons {
 				username = "";
 				password = "";
 				alwaysstorepw = false;
+				avfsmodule = "ftp";
 			}
 		}
 	}
@@ -6532,58 +6544,24 @@ buttons {
 }
 filetypes {
 	filetype {
-		title = "Verzeichnis";
+		title = "Noch nicht überprüft";
 		pattern = "";
 		usepattern = false;
 		usecontent = false;
 		content {
 		}
-		type = dir;
+		type = notyetchecked;
 		patternignorecase = false;
 		patternuseregexp = false;
 		patternusefullname = false;
 		extcond = "";
 		useextcond = false;
 		ftcommands {
-			dnd {
-				EnterDirOp {
-					dir = "";
-					mode = active;
-				}
-			}
-			customaction {
-				name = "Dateiname in Zwischenablage";
-				commands {
-					ClipboardOp {
-						clipboardstring = "{F}";
-					}
-				}
-			}
-			customaction {
-				name = "Archive erzeugen";
-				commands {
-					OwnOp {
-						separateeachentry = false;
-						recursive = false;
-						start = terminalwait;
-						com = "tar -cvf {p}/{uf}.tar {f}";
-						viewstr = "";
-						inbackground = false;
-						takedirs = false;
-						dontcd = false;
-					}
-					ReloadOp {
-						mode = current;
-						resetdirsizes = false;
-						keepfiletypes = true;
-					}
-				}
-			}
-			customaction {
-				name = "dir size";
-				commands {
-					DirSizeOp {
-					}
+			show {
+				InternalViewOp {
+					requestflags = false;
+					customfiles = "";
+					showmode = active;
 				}
 			}
 		}
@@ -6626,13 +6604,13 @@ filetypes {
 		selectactivecolor = 1,0;
 	}
 	filetype {
-		title = "Noch nicht überprüft";
+		title = "Unbekannter Typ";
 		pattern = "";
 		usepattern = false;
 		usecontent = false;
 		content {
 		}
-		type = notyetchecked;
+		type = unknown;
 		patternignorecase = false;
 		patternuseregexp = false;
 		patternusefullname = false;
@@ -6644,6 +6622,78 @@ filetypes {
 					requestflags = false;
 					customfiles = "";
 					showmode = active;
+				}
+			}
+			customaction {
+				name = "Dateiname in Zwischenablage";
+				commands {
+					ClipboardOp {
+						clipboardstring = "{F}";
+					}
+				}
+			}
+		}
+		subtype {
+		}
+		colormode = default;
+		unselectcolor = 1,0;
+		selectcolor = 1,0;
+		unselectactivecolor = 1,0;
+		selectactivecolor = 1,0;
+	}
+	filetype {
+		title = "Verzeichnis";
+		pattern = "";
+		usepattern = false;
+		usecontent = false;
+		content {
+		}
+		type = dir;
+		patternignorecase = false;
+		patternuseregexp = false;
+		patternusefullname = false;
+		extcond = "";
+		useextcond = false;
+		ftcommands {
+			dnd {
+				EnterDirOp {
+					dir = "";
+					mode = active;
+				}
+			}
+			customaction {
+				name = "Archive erzeugen";
+				commands {
+					OwnOp {
+						separateeachentry = false;
+						recursive = false;
+						start = terminalwait;
+						com = "tar -cvf {p}/{uf}.tar {f}";
+						viewstr = "";
+						inbackground = false;
+						takedirs = false;
+						dontcd = false;
+					}
+					ReloadOp {
+						mode = current;
+						resetdirsizes = false;
+						keepfiletypes = true;
+					}
+				}
+			}
+			customaction {
+				name = "Dateiname in Zwischenablage";
+				commands {
+					ClipboardOp {
+						clipboardstring = "{F}";
+					}
+				}
+			}
+			customaction {
+				name = "dir size";
+				commands {
+					DirSizeOp {
+					}
 				}
 			}
 		}
@@ -8882,18 +8932,14 @@ filetypes {
 								selectactivecolor = 1,0;
 							}
 							filetype {
-								title = "Hippel-COSO Musikdatei";
-								pattern = "";
+								title = "Hippel Musikdatei";
+								pattern = "HIP.*";
 								usepattern = true;
-								usecontent = true;
+								usecontent = false;
 								content {
-									0 = 67;
-									1 = 79;
-									2 = 83;
-									3 = 79;
 								}
 								type = normal;
-								patternignorecase = false;
+								patternignorecase = true;
 								patternuseregexp = false;
 								patternusefullname = false;
 								extcond = "";
@@ -8909,14 +8955,18 @@ filetypes {
 								selectactivecolor = 1,0;
 							}
 							filetype {
-								title = "Hippel Musikdatei";
-								pattern = "HIP.*";
+								title = "Hippel-COSO Musikdatei";
+								pattern = "";
 								usepattern = true;
-								usecontent = false;
+								usecontent = true;
 								content {
+									0 = 67;
+									1 = 79;
+									2 = 83;
+									3 = 79;
 								}
 								type = normal;
-								patternignorecase = true;
+								patternignorecase = false;
 								patternuseregexp = false;
 								patternusefullname = false;
 								extcond = "";
@@ -9817,346 +9867,6 @@ filetypes {
 				selectactivecolor = 1,0;
 			}
 			filetype {
-				title = "corefile";
-				pattern = "core";
-				usepattern = true;
-				usecontent = false;
-				content {
-				}
-				type = normal;
-				patternignorecase = false;
-				patternuseregexp = false;
-				patternusefullname = false;
-				extcond = "";
-				useextcond = false;
-				ftcommands {
-				}
-				subtype {
-				}
-				colormode = default;
-				unselectcolor = 1,0;
-				selectcolor = 1,0;
-				unselectactivecolor = 1,0;
-				selectactivecolor = 1,0;
-			}
-			filetype {
-				title = "Dokumente";
-				pattern = "";
-				usepattern = false;
-				usecontent = false;
-				content {
-				}
-				type = normal;
-				patternignorecase = false;
-				patternuseregexp = false;
-				patternusefullname = false;
-				extcond = "";
-				useextcond = false;
-				ftcommands {
-				}
-				subtype {
-					filetype {
-						title = "AmigaGuide Dokument";
-						pattern = "*.guide";
-						usepattern = true;
-						usecontent = false;
-						content {
-						}
-						type = normal;
-						patternignorecase = true;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = terminalwait;
-									com = "agr {f}";
-									viewstr = "";
-									inbackground = true;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "LyX Datei";
-						pattern = "";
-						usepattern = false;
-						usecontent = true;
-						content {
-							0 = 35;
-							1 = 76;
-							2 = 121;
-							3 = 88;
-						}
-						type = normal;
-						patternignorecase = false;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "lyx {a}";
-									viewstr = "";
-									inbackground = true;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "MS Word Dokument";
-						pattern = "*.doc";
-						usepattern = true;
-						usecontent = false;
-						content {
-						}
-						type = normal;
-						patternignorecase = true;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "soffice {F}";
-									viewstr = "";
-									inbackground = true;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "OpenOffice Dokument";
-						pattern = "*.sxw";
-						usepattern = true;
-						usecontent = false;
-						content {
-						}
-						type = normal;
-						patternignorecase = true;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "soffice {F}";
-									viewstr = "";
-									inbackground = true;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "PDF Datei";
-						pattern = "";
-						usepattern = false;
-						usecontent = true;
-						content {
-							0 = 37;
-							1 = 80;
-							2 = 68;
-							3 = 70;
-						}
-						type = normal;
-						patternignorecase = false;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "evince {F}";
-									viewstr = "";
-									inbackground = false;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-							customaction {
-								name = "open with acroread";
-								commands {
-									OwnOp {
-										separateeachentry = false;
-										recursive = false;
-										start = normal;
-										com = "acroread {f}";
-										viewstr = "";
-										inbackground = false;
-										takedirs = false;
-										dontcd = false;
-									}
-								}
-							}
-							customaction {
-								name = "open with xpdf";
-								commands {
-									OwnOp {
-										separateeachentry = false;
-										recursive = false;
-										start = normal;
-										com = "xpdf {f}";
-										viewstr = "";
-										inbackground = false;
-										takedirs = false;
-										dontcd = false;
-									}
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "PostScript Datei";
-						pattern = "";
-						usepattern = false;
-						usecontent = true;
-						content {
-							0 = 37;
-							1 = 33;
-							2 = 80;
-							3 = 83;
-							4 = 45;
-							5 = 65;
-							6 = 100;
-							7 = 111;
-							8 = 98;
-							9 = 101;
-							10 = 45;
-						}
-						type = normal;
-						patternignorecase = false;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "gv {F}";
-									viewstr = "";
-									inbackground = false;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "AbiWord file";
-						pattern = "*.abw";
-						usepattern = true;
-						usecontent = false;
-						content {
-						}
-						type = normal;
-						patternignorecase = true;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "";
-						useextcond = false;
-						ftcommands {
-							doubleclick {
-								OwnOp {
-									separateeachentry = false;
-									recursive = false;
-									start = normal;
-									com = "abiword {F}";
-									viewstr = "";
-									inbackground = false;
-									takedirs = false;
-									dontcd = false;
-								}
-							}
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-				}
-				colormode = default;
-				unselectcolor = 1,0;
-				selectcolor = 1,0;
-				unselectactivecolor = 1,0;
-				selectactivecolor = 1,0;
-			}
-			filetype {
 				title = "Ausführbare Datei";
 				pattern = "";
 				usepattern = false;
@@ -10528,6 +10238,37 @@ filetypes {
 						selectactivecolor = 1,0;
 					}
 					filetype {
+						title = "JPEG Bild";
+						pattern = "";
+						usepattern = false;
+						usecontent = false;
+						content {
+							0 = 255;
+							1 = 216;
+							2 = 255;
+							3 = 224;
+							6 = 74;
+							7 = 70;
+							8 = 73;
+							9 = 70;
+						}
+						type = normal;
+						patternignorecase = false;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "( contentNum( 0, 2 ) == 65496 ) && ( contentNum( 2 ) == 255 ) && ( ( contentStr( 6, 4 ) == \"JFIF\" ) || ( contentStr( 6, 4 ) == \"Exif\" ) )";
+						useextcond = true;
+						ftcommands {
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
 						title = "JPEG2000 Bild";
 						pattern = "";
 						usepattern = false;
@@ -10579,37 +10320,6 @@ filetypes {
 						patternusefullname = false;
 						extcond = "";
 						useextcond = false;
-						ftcommands {
-						}
-						subtype {
-						}
-						colormode = parent;
-						unselectcolor = 1,0;
-						selectcolor = 1,0;
-						unselectactivecolor = 1,0;
-						selectactivecolor = 1,0;
-					}
-					filetype {
-						title = "JPEG Bild";
-						pattern = "";
-						usepattern = false;
-						usecontent = false;
-						content {
-							0 = 255;
-							1 = 216;
-							2 = 255;
-							3 = 224;
-							6 = 74;
-							7 = 70;
-							8 = 73;
-							9 = 70;
-						}
-						type = normal;
-						patternignorecase = false;
-						patternuseregexp = false;
-						patternusefullname = false;
-						extcond = "( contentNum( 0, 2 ) == 65496 ) && ( contentNum( 2 ) == 255 ) && ( ( contentStr( 6, 4 ) == \"JFIF\" ) || ( contentStr( 6, 4 ) == \"Exif\" ) )";
-						useextcond = true;
 						ftcommands {
 						}
 						subtype {
@@ -10814,6 +10524,369 @@ filetypes {
 				unselectcolor = 1,0;
 				selectcolor = 1,0;
 				unselectactivecolor = 1,0;
+				selectactivecolor = 1,0;
+			}
+			filetype {
+				title = "corefile";
+				pattern = "core";
+				usepattern = true;
+				usecontent = false;
+				content {
+				}
+				type = normal;
+				patternignorecase = false;
+				patternuseregexp = false;
+				patternusefullname = false;
+				extcond = "";
+				useextcond = false;
+				ftcommands {
+				}
+				subtype {
+				}
+				colormode = default;
+				unselectcolor = 1,0;
+				selectcolor = 1,0;
+				unselectactivecolor = 1,0;
+				selectactivecolor = 1,0;
+			}
+			filetype {
+				title = "Dokumente";
+				pattern = "";
+				usepattern = false;
+				usecontent = false;
+				content {
+				}
+				type = normal;
+				patternignorecase = false;
+				patternuseregexp = false;
+				patternusefullname = false;
+				extcond = "";
+				useextcond = false;
+				ftcommands {
+				}
+				subtype {
+					filetype {
+						title = "AbiWord file";
+						pattern = "*.abw";
+						usepattern = true;
+						usecontent = false;
+						content {
+						}
+						type = normal;
+						patternignorecase = true;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "abiword {F}";
+									viewstr = "";
+									inbackground = false;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "AmigaGuide Dokument";
+						pattern = "*.guide";
+						usepattern = true;
+						usecontent = false;
+						content {
+						}
+						type = normal;
+						patternignorecase = true;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = terminalwait;
+									com = "agr {f}";
+									viewstr = "";
+									inbackground = true;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "LyX Datei";
+						pattern = "";
+						usepattern = false;
+						usecontent = true;
+						content {
+							0 = 35;
+							1 = 76;
+							2 = 121;
+							3 = 88;
+						}
+						type = normal;
+						patternignorecase = false;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "lyx {a}";
+									viewstr = "";
+									inbackground = true;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "MS Word Dokument";
+						pattern = "*.doc";
+						usepattern = true;
+						usecontent = false;
+						content {
+						}
+						type = normal;
+						patternignorecase = true;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "soffice {F}";
+									viewstr = "";
+									inbackground = true;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "OpenOffice Dokument";
+						pattern = "*.sxw";
+						usepattern = true;
+						usecontent = false;
+						content {
+						}
+						type = normal;
+						patternignorecase = true;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "soffice {F}";
+									viewstr = "";
+									inbackground = true;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "PDF Datei";
+						pattern = "";
+						usepattern = false;
+						usecontent = true;
+						content {
+							0 = 37;
+							1 = 80;
+							2 = 68;
+							3 = 70;
+						}
+						type = normal;
+						patternignorecase = false;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "evince {F}";
+									viewstr = "";
+									inbackground = false;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+							customaction {
+								name = "open with acroread";
+								commands {
+									OwnOp {
+										separateeachentry = false;
+										recursive = false;
+										start = normal;
+										com = "acroread {f}";
+										viewstr = "";
+										inbackground = false;
+										takedirs = false;
+										dontcd = false;
+									}
+								}
+							}
+							customaction {
+								name = "open with xpdf";
+								commands {
+									OwnOp {
+										separateeachentry = false;
+										recursive = false;
+										start = normal;
+										com = "xpdf {f}";
+										viewstr = "";
+										inbackground = false;
+										takedirs = false;
+										dontcd = false;
+									}
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+					filetype {
+						title = "PostScript Datei";
+						pattern = "";
+						usepattern = false;
+						usecontent = true;
+						content {
+							0 = 37;
+							1 = 33;
+							2 = 80;
+							3 = 83;
+							4 = 45;
+							5 = 65;
+							6 = 100;
+							7 = 111;
+							8 = 98;
+							9 = 101;
+							10 = 45;
+						}
+						type = normal;
+						patternignorecase = false;
+						patternuseregexp = false;
+						patternusefullname = false;
+						extcond = "";
+						useextcond = false;
+						ftcommands {
+							doubleclick {
+								OwnOp {
+									separateeachentry = false;
+									recursive = false;
+									start = normal;
+									com = "gv {F}";
+									viewstr = "";
+									inbackground = false;
+									takedirs = false;
+									dontcd = false;
+								}
+							}
+						}
+						subtype {
+						}
+						colormode = parent;
+						unselectcolor = 1,0;
+						selectcolor = 1,0;
+						unselectactivecolor = 1,0;
+						selectactivecolor = 1,0;
+					}
+				}
+				colormode = default;
+				unselectcolor = 1,0;
+				selectcolor = 1,0;
+				unselectactivecolor = 1,0;
+				selectactivecolor = 1,0;
+			}
+			filetype {
+				title = "Kaputter Symlink";
+				pattern = "";
+				usepattern = false;
+				usecontent = false;
+				content {
+				}
+				type = normal;
+				patternignorecase = false;
+				patternuseregexp = false;
+				patternusefullname = false;
+				extcond = "isBrokenSymlink() == 1";
+				useextcond = true;
+				ftcommands {
+				}
+				subtype {
+				}
+				colormode = default;
+				unselectcolor = 6,0;
+				selectcolor = 1,0;
+				unselectactivecolor = 6,7;
 				selectactivecolor = 1,0;
 			}
 			filetype {
@@ -11984,68 +12057,6 @@ filetypes {
 				unselectactivecolor = 1,0;
 				selectactivecolor = 1,0;
 			}
-			filetype {
-				title = "Kaputter Symlink";
-				pattern = "";
-				usepattern = false;
-				usecontent = false;
-				content {
-				}
-				type = normal;
-				patternignorecase = false;
-				patternuseregexp = false;
-				patternusefullname = false;
-				extcond = "isBrokenSymlink() == 1";
-				useextcond = true;
-				ftcommands {
-				}
-				subtype {
-				}
-				colormode = default;
-				unselectcolor = 6,0;
-				selectcolor = 1,0;
-				unselectactivecolor = 6,7;
-				selectactivecolor = 1,0;
-				usemagic = false;
-			}
-		}
-		colormode = default;
-		unselectcolor = 1,0;
-		selectcolor = 1,0;
-		unselectactivecolor = 1,0;
-		selectactivecolor = 1,0;
-	}
-	filetype {
-		title = "Unbekannter Typ";
-		pattern = "";
-		usepattern = false;
-		usecontent = false;
-		content {
-		}
-		type = unknown;
-		patternignorecase = false;
-		patternuseregexp = false;
-		patternusefullname = false;
-		extcond = "";
-		useextcond = false;
-		ftcommands {
-			show {
-				InternalViewOp {
-					requestflags = false;
-					customfiles = "";
-					showmode = active;
-				}
-			}
-			customaction {
-				name = "Dateiname in Zwischenablage";
-				commands {
-					ClipboardOp {
-						clipboardstring = "{F}";
-					}
-				}
-			}
-		}
-		subtype {
 		}
 		colormode = default;
 		unselectcolor = 1,0;

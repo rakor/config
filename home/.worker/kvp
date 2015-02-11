@@ -1,2 +1,6 @@
 commandmenu-height = 334
 commandmenu-width = 535
+filterselect-height = 180
+filterselect-width = 527
+pathjumpwin-height = 450
+pathjumpwin-width = 701

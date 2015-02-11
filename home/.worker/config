@@ -8,9 +8,10 @@ global {
 		left {
 			hbartop = false;
 			hbarheight = 12;
-			vbarleft = false;
+			vbarleft = true;
 			vbarwidth = 12;
 			showheader = true;
+			pathentryontop = true;
 			displaysets {
 				permission;
 				size;
@@ -27,6 +28,7 @@ global {
 			vbarleft = true;
 			vbarwidth = 12;
 			showheader = true;
+			pathentryontop = true;
 			displaysets {
 				permission;
 				size;
@@ -146,7 +148,7 @@ colors {
 }
 startup {
 	left = ".";
-	right = "";
+	right = "$HOME";
 }
 fonts {
 	globalfont = "fixed";
@@ -187,9 +189,9 @@ paths {
 	}
 	path {
 		position = 2;
-		title = "/tmp";
+		title = "/etc";
 		color = 1,0;
-		path = "/tmp";
+		path = "/etc";
 		shortkeys {
 			normal {
 				key = "3";

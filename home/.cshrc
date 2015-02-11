@@ -25,7 +25,7 @@ if ($?prompt) then
     # An interactive shell -- set some stuff up
     set prompt="\n%{\033[0;32m%}%n@%m:%{\033[0;33m%}%~%{\033[1;36m%}>%{\033\[0;37m%} "
     #For root we like to use an other prompt:
-    if ($USER == root) then
+    if ($uid == "0") then
         set prompt="\n%{\033[1;31m%}%m%{\033[0;33m%}:%~%{\033[0;36m%}#%{\033[0m%} "
     endif
     set promptchars = "%#"

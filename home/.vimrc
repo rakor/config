@@ -33,6 +33,12 @@ if v:version >= 704
     set cm=blowfish2
 endif
 
+"Immer dunkler Hintergrund
+set background=dark
+
+"Farbscheme desert ist gut lesbar
+colorscheme desert
+
 "Aktiviert Syntax-Highlighting. 
 syntax on
 

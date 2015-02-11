@@ -42,6 +42,9 @@ set backspace=2
 "Zeilen bei 72 brechen
 set tw=72
 
+"Immer X Zeilen vor/nach dem Cursor anzeigen
+set so=5
+
 "Tablaenge setzen auf # Zeichen
 set ts=4
 
@@ -68,6 +71,9 @@ set ruler
 
 "Befehle im Befehlsmodus beim Tippen anzeigen
 set showcmd
+
+"Schoenere Vervollstaendigung von Befehlen
+set wildmenu
 
 "Statuszeile immer anzeigen
 set ls=2

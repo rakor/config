@@ -15,7 +15,7 @@
 #   you can change the menu name in ~/.fluxbox/init to:
 #     session.menuFile: ~/.fluxbox/my-menu
 [begin] (Fluxbox-1.1.1)
-[encoding] {de_DE.ISO8859-15}
+[encoding] {de_DE.UTF-8}
       [exec] (xterm) {xterm}
       [exec] () {}
 [submenu] (Terminals)

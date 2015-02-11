@@ -14,7 +14,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/games:/usr/local/sbin:/usr/local/bin:$HO
 # TERM=xterm; 	export TERM
 
 EDITOR=vim;   	export EDITOR
-PAGER=more;  	export PAGER
+PAGER=less;  	export PAGER
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV

@@ -1,5 +1,3 @@
-"Kommentare in der vimrc werden mit " eingeleitet!
-"
 "Schaltet die volle VIM-Funktionalität frei
 set nocp
 
@@ -11,19 +9,6 @@ if has("win32") || has("win64")
     "Open GVim im Vollbild
     au GUIEnter * simalt ~x
 endif
-
-"Definiere einige Tasten neu
-imap << <ESC>
-map! <F1> !
-map <F1> ! 
-map! <F2> "
-map <F2> "
-map <F4> $
-map! <F4> $
-map <F9> (
-map! <F9> (
-map <F10> )
-map! <F10> )
 
 "Diffs nebeneinander sauber anzeigen
 set diffopt=vertical,filler
@@ -125,3 +110,17 @@ autocmd FileType c set tw=0
 autocmd FileType c set autowrite
 autocmd FileType csv set tw=0
 autocmd FileType csv set nowrap 
+
+
+"Definiere einige Tasten nur fuer Android-Tablet
+"imap << <ESC>
+"map! <F1> !
+"map <F1> ! 
+"map! <F2> "
+"map <F2> "
+"map <F4> $
+"map! <F4> $
+"map <F9> (
+"map! <F9> (
+"map <F10> )
+"map! <F10> )

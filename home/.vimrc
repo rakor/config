@@ -115,7 +115,7 @@ autocmd FileType csv set nowrap
 "Definiere einige Tasten nur fuer Android-Tablet
 "imap << <ESC>
 "map! <F1> !
-"map <F1> ! 
+"map <F1> !
 "map! <F2> "
 "map <F2> "
 "map <F4> $

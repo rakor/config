@@ -191,7 +191,7 @@ paths {
 		position = 2;
 		title = "/etc";
 		color = 1,0;
-		path = "/tmp";
+		path = "/etc";
 		shortkeys {
 			normal {
 				key = "3";

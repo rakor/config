@@ -30,6 +30,7 @@ if ($?prompt) then
     endif
     set promptchars = "%#"
     set autolist
+    set autorehash
     set filec
     set nobeep
     set history = 1000

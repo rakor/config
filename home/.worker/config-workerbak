@@ -1,4 +1,4 @@
-workerconfig 3.5.2;
+workerconfig 3.6.0;
 global {
 	lang = "deutsch";
 	rows = 3;
@@ -68,8 +68,8 @@ global {
 		weighttoactive = false;
 	}
 	mouseconf {
-		selectbutton = 1;
-		activatebutton = 2;
+		selectbutton = 2;
+		activatebutton = 1;
 		scrollbutton = 3;
 		activatemod {
 		}
@@ -303,6 +303,9 @@ hotkeys {
 		shortkeys {
 			normal {
 				key = "Insert";
+			}
+			normal {
+				key = "space";
 			}
 		}
 		commands {
@@ -776,6 +779,26 @@ hotkeys {
 			}
 		}
 	}
+	hotkey {
+		title = "wech";
+		shortkeys {
+			normal {
+				key = "Right";
+				mod = control;
+				mod = mod1;
+			}
+		}
+		commands {
+			SwitchListerOp {
+			}
+			EnterDirOp {
+				dir = "{ouF}";
+				mode = active2other;
+			}
+			SwitchListerOp {
+			}
+		}
+	}
 }
 buttons {
 	button {
@@ -1118,7 +1141,7 @@ buttons {
 		}
 		commands {
 			DeleteOp {
-				alsoactive = false;
+				alsoactive = true;
 			}
 		}
 	}
@@ -6538,6 +6561,52 @@ buttons {
 				mode = current;
 				resetdirsizes = false;
 				keepfiletypes = false;
+			}
+		}
+	}
+	button {
+		position = 210;
+		title = "Selected to vdir";
+		color = 1,0;
+		shortkeys {
+		}
+		commands {
+			ScriptOp {
+				type = evalcommand;
+				pushuseoutput = false;
+				dodebug = false;
+				wpurecursive = false;
+				wputakedirs = false;
+				stacknr = 0;
+				wintype = leave;
+				changeprogress = false;
+				changetext = false;
+				progressuseoutput = false;
+				wintextuseoutput = false;
+				commandstring = "vdir_from_selected";
+			}
+		}
+	}
+	button {
+		position = 212;
+		title = "Add from other side";
+		color = 1,0;
+		shortkeys {
+		}
+		commands {
+			ScriptOp {
+				type = evalcommand;
+				pushuseoutput = false;
+				dodebug = false;
+				wpurecursive = false;
+				wputakedirs = false;
+				stacknr = 0;
+				wintype = leave;
+				changeprogress = false;
+				changetext = false;
+				progressuseoutput = false;
+				wintextuseoutput = false;
+				commandstring = "vdir_add_selected_from_other_side";
 			}
 		}
 	}

@@ -68,8 +68,8 @@ global {
 		weighttoactive = false;
 	}
 	mouseconf {
-		selectbutton = 1;
-		activatebutton = 2;
+		selectbutton = 2;
+		activatebutton = 1;
 		scrollbutton = 3;
 		activatemod {
 		}
@@ -303,6 +303,9 @@ hotkeys {
 		shortkeys {
 			normal {
 				key = "Insert";
+			}
+			normal {
+				key = "space";
 			}
 		}
 		commands {
@@ -776,6 +779,22 @@ hotkeys {
 			}
 		}
 	}
+	hotkey {
+		title = "wech";
+		shortkeys {
+			normal {
+				key = "Right";
+				mod = control;
+				mod = mod1;
+			}
+		}
+		commands {
+			EnterDirOp {
+				dir = "{ouF}";
+				mode = active2other;
+			}
+		}
+	}
 }
 buttons {
 	button {
@@ -1118,7 +1137,7 @@ buttons {
 		}
 		commands {
 			DeleteOp {
-				alsoactive = false;
+				alsoactive = true;
 			}
 		}
 	}

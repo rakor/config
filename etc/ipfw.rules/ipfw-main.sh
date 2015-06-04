@@ -17,6 +17,7 @@ interface="em0"
 # Liste der DNS-Server zu welchen verbunden werden soll (Leerzeichengetrennte Liste)
 dns_servers="192.168.2.1"
 
+# Der zu verwendende DHCP-Server, wenn keiner benötigt wird die Variable leer lassen
 dhcp_server="192.168.2.1"
 
 # Hier eine Liste der Jailspezifischen ipfw-rules Dateien.
@@ -62,7 +63,9 @@ for dns in $dns_servers ; do
 done
 
 # DHCP Anfragen erlauben
-$cmd allow udp from any to $dhcp_server 67 out via $interface keep-state
+if [ -n "$dhcp_server" ]; then
+    $cmd allow udp from any to $dhcp_server 67 out via $interface keep-state
+fi
 
 # Root darf alles
 $cmd allow tcp from me to any out via $interface setup keep-state uid root

@@ -14,6 +14,11 @@
 # Netzwerk-Interface ins Internet
 interface="em0"
 
+# Liste der DNS-Server zu welchen verbunden werden soll (Leerzeichengetrennte Liste)
+dns_servers="192.168.2.1"
+
+dhcp_server="192.168.2.1"
+
 # Hier eine Liste der Jailspezifischen ipfw-rules Dateien.
 # Die ipfw-host.sh sollte immer enthalten sein und die ipfw-Regeln fuer
 # den Host enthalten.
@@ -22,7 +27,8 @@ jail_rules="ipfw-host.sh"
 # Pfad zu den $jail_rules. Immer mit abschliessendem / "
 jail_rules_path="/etc/ipfw.rules/"
 
-
+# Ende des Parametrierbereichs
+#########################################
 #########################################
 # Die folgenden Variablen nicht ändern.
 
@@ -33,7 +39,7 @@ cmd="/sbin/ipfw -q add"
 #########################################
 # Es geht los
 
-# Regen in 19er Schritten hochzaehlen
+# Regen in 10er Schritten hochzaehlen
 /sbin/sysctl net.inet.ip.fw.autoinc_step=10
 
 # Zunaechst altlasten leeren
@@ -50,11 +56,13 @@ $cmd check-state
 # Alles was raus will erlauben
 
 # DNS-Abfragen erlauben
-$cmd allow tcp from any to 192.168.2.1 53 out via $interface setup keep-state
-$cmd allow udp from any to 192.168.2.1 53 out via $interface keep-state
+for dns in $dns_servers ; do
+    $cmd allow tcp from any to $dns 53 out via $interface setup keep-state
+    $cmd allow udp from any to $dns 53 out via $interface keep-state
+done
 
 # DHCP Anfragen erlauben
-$cmd allow udp from any to 192.168.2.1 67 out via $interface keep-state
+$cmd allow udp from any to $dhcp_server 67 out via $interface keep-state
 
 # Root darf alles
 $cmd allow tcp from me to any out via $interface setup keep-state uid root

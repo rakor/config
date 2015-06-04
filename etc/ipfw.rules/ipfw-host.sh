@@ -20,7 +20,7 @@ allowed_udp_in=""
 parallel_allowed_hosts="5"
 
 #################################
-# Die Folgendfen Variablen nicht veraendern
+# Die Folgenden Variablen nicht veraendern
 
 # Komando fuer IPFW
 cmd="/sbin/ipfw -q add"
@@ -48,7 +48,7 @@ allowOut)
 	;;
 
 denyOut)
-	echo "Dies ist ruaszus verboten"
+	echo "Dies ist rauszus verboten"
 	;;
 
 denyAll)

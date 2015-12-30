@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/local/bin/perl
 
 @offeneSessions = `tmux ls`;
 if ($#offeneSessions >= 0){

@@ -97,10 +97,10 @@ end
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit },
-   { "reboot", reboot },
-   { "poweroff", poweroff}
+   { "restart awesome", awesome.restart },
+   { "quit awesome", awesome.quit },
+   { "reboot system", "shutdown -r now" },
+   { "poweroff system", "shutdown -p now" }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },

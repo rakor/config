@@ -1,3 +1,82 @@
+-- Here is a short overview about the most important keybindungs done in
+-- this configuration.
+--
+-- The META-key is written as <M>
+-- The SHIFT-key is written as <S>
+-- The CONTROL-key is wirtten as <C>
+-- The TAB-key is written as <T>
+-- The ESC-key is written as <E>
+--
+--
+-- Manage awesome
+-----------------
+--  <M> <C> r           restart awesome
+--  <M> <S> q           quit awesome
+--  <M> <C> 0           lock screen using xlock
+--  <M>  w              show awesome-menu
+--  <M> <SPACE>         switch to next layout
+--  <M> <S> <SPACE>     switch to previous layout
+--
+-- Start Programs
+-----------------
+--  <M> <Return>        start xterm
+--  <M>  s              start su in xterm
+--  <M>  r              run a program (cmdline)
+--  <M>  p              run a program (dmenu)
+--  <M>  x              run lua-code
+--
+-- Windows
+--------------
+--  <M> <F3>            rename window
+--  <M>  f              toggle fullscreen
+--  <M>  m              maximize window
+--  <M> <S>  c          close window
+--  <M> <C> <SPACE>     toggle floating
+--  <M>  n              minimize window
+--  <M> <C> n           unminimize window
+--  <M>  t              move to top
+--
+--  <M> <S> 1..9        move window to tag
+--  <M> <C> <S> 1..9    clone window to tag (will be there too)
+--  <M> <C> 1..9        show tags combined
+--
+--  <M>  u              Jump to 'urgent' window
+--  <M>  j              switch to next window in tag 
+--  <M> <T>             "
+--  <M>  k              switch to previous window in tag
+--  <M> <S> <T>         "
+--  <M> <F1>            jump to master-window
+--  <M> <C> <RETURN>    swap current window with master
+--
+--  <M> <S>  j          move window to next position in tag 
+--  <M> <S>  k          move window to previous position in tag
+--  <M> <S>  h          move first window in secondary-space to master
+--  <M> <S>  l          move last master-window to secondary-space
+--
+--  <M>  h              decrease size of master-window
+--  <M>  l              increase size of master-window
+--
+-- Tags
+-------
+--  <M> <F2>            rename current tag 
+--
+--  <M>  1..9           switch to tag nr. #
+--  <M> <left>          switch to next tag
+--  <M> <right>         switch to previous tag
+--  <M> <E>             switch to previous selected tag
+--
+--  <M> <C> h           increase number of column-windows
+--  <M> <C> l           decrease number of column-windows
+--
+-- Monitors
+-----------
+--  <M>  o              move window to other monitor
+--  <M> <C>  j          switch to next monitor
+--  <M> <C>  k          switch to previous monitor
+--
+-- ##EOD -- Lines above this one will be show if you select 'show keybindungs' from the menu
+
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -96,6 +175,13 @@ end
 -- Create a laucher widget and a main menu
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
+   { "show bindings", terminal .. " -e  'cat /home/rakor/.config/awesome/rc.lua | " ..
+                                        "grep -m 1 -n ##EOD | " ..
+                                        "sed -E -e \"s/(^[[:digit:]]*).*/\\1-1/\" | " ..
+                                        "bc | " ..
+                                        "xargs -J {} head -n {} /home/rakor/.config/awesome/rc.lua | " ..
+                                        "sed -e 's/^--//' | " ..
+                                        "less'" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart awesome", awesome.restart },
    { "quit awesome", awesome.quit },

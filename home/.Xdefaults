@@ -1,2 +1,3 @@
 xterm*foreground: rgb:a8/a8/a8
 xterm*background: rgb:00/00/00
+UXTerm*metaSendsEscape: true

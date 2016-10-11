@@ -1,17 +1,17 @@
-#!/usr/local/bin/perl
+#!/bin/sh
 
-@offeneSessions = `tmux ls`;
-if ($#offeneSessions >= 0){
-	foreach (@offeneSessions){
-		$sessionname = $_;
-		$sessionname =~ s/^([^:]*).*/$1/;
-		unless ($sessionname =~ /irssi/ ){
-			exec "tmux attach -t $sessionname";
-		}
-	}
-}
-else {
-	exec "tmux -u new -s std";
-}
-print @offeneSessions;
-exec "tmux -u new  -s std"; 
+NAME="std"
+if [ $1 ]; then
+	NAME=$1;
+fi
+
+if tmux ls ; then
+	for SESSIONNAME in `tmux ls | sed "s/\(^[^:]*\).*/\1/"` ; do 
+		echo "es ist $xxx"
+		if [ $SESSIONNAME = $NAME ]; then
+			tmux attach -t $SESSIONNAME
+			exit
+		fi	
+	done
+fi
+	tmux -u new -s $NAME $2

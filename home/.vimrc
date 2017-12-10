@@ -102,6 +102,9 @@ set gfn=Monospace\ 8
 set fdm=syntax
 set nofoldenable 
 
+"Lade Dateispezifische Plugins
+filetype plugin on
+
 "=========================================
 "Einstellungen fuer bestimmte Dateiformate
 "=========================================

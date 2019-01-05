@@ -22,7 +22,7 @@ endif
 set background=dark
 
 "Farbscheme desert ist gut lesbar
-colorscheme desert
+colorscheme molokai
 
 "Aktiviert Syntax-Highlighting. 
 syntax on
@@ -105,6 +105,13 @@ set nofoldenable
 "Lade Dateispezifische Plugins
 filetype plugin on
 
+"Mit strg-down in eine neue Zeile
+ino [1;5B <ESC>o
+nn [1;5B o
+"Mit strg-up eine neue Zeile hoch
+ino [1;5A <ESC>O
+nn [1;5A O
+
 "=========================================
 "Einstellungen fuer bestimmte Dateiformate
 "=========================================
@@ -113,17 +120,53 @@ autocmd FileType c set tw=0
 autocmd FileType c set autowrite
 autocmd FileType csv set tw=0
 autocmd FileType csv set nowrap 
+"Automatismen fuer Go
+"Automatisch speichern wenn :make (bzw. GoBuild, GoRun,..) aufgerufen wird
+autocmd FileType go set autowrite
+"Automatische Klammern
+autocmd FileType go inoremap {      {}<Left>
+autocmd FileType go inoremap {<CR>  {<CR>}<Esc>O
+autocmd FileType go inoremap {{     {
+autocmd FileType go inoremap {}     {}
+autocmd FileType go inoremap (      ()<Left>
+autocmd FileType go inoremap (<CR>  (<CR>)<Esc>O
+autocmd FileType go inoremap ((     (
+autocmd FileType go inoremap ()     ()
+autocmd FileType go inoremap [      []<Left>
+autocmd FileType go inoremap [<CR>  [<CR>]<Esc>O
+autocmd FileType go inoremap [[     [
+autocmd FileType go inoremap []     []
+"let g:rehash256 = 1
+"let g:molokai_original = 1
+autocmd FileType go colorscheme molokai
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+let g:go_list_type = "quickfix"
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+"let g:go_auto_type_info = 1
+set updatetime=100
+let g:go_auto_sameids = 1
 
 
-"Definiere einige Tasten nur fuer Android-Tablet
-"imap << <ESC>
-"map! <F1> !
-"map <F1> !
-"map! <F2> "
-"map <F2> "
-"map <F4> $
-"map! <F4> $
-"map <F9> (
-"map! <F9> (
-"map <F10> )
-"map! <F10> )
+map <C-j> :lnext<CR>
+map <C-k> :lprevious<CR>
+
+" Rechtschreibprüfung für bestimmte Dateitypen
+au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=de_de
+au BufNewFile,BufRead,BufEnter   *.md      setlocal spell    spelllang=de_de
+au BufNewFile,BufRead,BufEnter   *.txt     setlocal spell    spelllang=de_de
+au BufNewFile,BufRead,BufEnter   README    setlocal spell    spelllang=en_us

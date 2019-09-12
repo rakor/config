@@ -112,6 +112,23 @@ nn [1;5B o
 ino [1;5A <ESC>O
 nn [1;5A O
 
+"Zugehörige Klammern nur leicht blau färben
+hi MatchParen cterm=none ctermbg=none ctermfg=blue
+
+"Tabnavigation
+nmap <C-t> :tabnew <CR>
+nmap <C-l> gt
+nmap <C-h> gT
+nmap <C-Right> gt
+nmap <C-Left> gT
+
+"Quickfixlist und Errorolist
+map <C-j> :lnext<CR>
+map <C-k> :lprevious<CR>
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
 "=========================================
 "Einstellungen fuer bestimmte Dateiformate
 "=========================================
@@ -120,7 +137,9 @@ autocmd FileType c set tw=0
 autocmd FileType c set autowrite
 autocmd FileType csv set tw=0
 autocmd FileType csv set nowrap 
+
 "Automatismen fuer Go
+"====================
 "Automatisch speichern wenn :make (bzw. GoBuild, GoRun,..) aufgerufen wird
 autocmd FileType go set autowrite
 "Automatische Klammern
@@ -136,17 +155,19 @@ autocmd FileType go inoremap [      []<Left>
 autocmd FileType go inoremap [<CR>  [<CR>]<Esc>O
 autocmd FileType go inoremap [[     [
 autocmd FileType go inoremap []     []
-"let g:rehash256 = 1
-"let g:molokai_original = 1
+"Autovervollständigung
+autocmd FileType go inoremap iferr if err != nil {<CR>}<ESC>O
 autocmd FileType go colorscheme molokai
 
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-let g:go_list_type = "quickfix"
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <F1> :GoDoc <CR> 
+autocmd FileType go nmap <F2> :GoDocBrowser <CR>
+autocmd FileType go nmap <F3> :GoRun <CR>
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
@@ -156,14 +177,11 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
 "let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
 
 
-map <C-j> :lnext<CR>
-map <C-k> :lprevious<CR>
 
 " Rechtschreibprüfung für bestimmte Dateitypen
 au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=de_de

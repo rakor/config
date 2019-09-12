@@ -129,6 +129,11 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
+" Rechtscheibprüfung deutsch, englisch, aus
+nmap <Leader>d :setlocal spell spelllang=de_de <CR>
+nmap <Leader>e :setlocal spell spelllang=en_us <CR>
+nmap <Leader>n :setlocal nospell <CR>
+
 "=========================================
 "Einstellungen fuer bestimmte Dateiformate
 "=========================================
@@ -157,14 +162,13 @@ autocmd FileType go inoremap [[     [
 autocmd FileType go inoremap []     []
 "Autovervollständigung
 autocmd FileType go inoremap iferr if err != nil {<CR>}<ESC>O
-autocmd FileType go colorscheme molokai
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <F1> :GoDoc <CR> 
+autocmd FileType go nmap <F1> <Plug>(go-doc-tab)
 autocmd FileType go nmap <F2> :GoDocBrowser <CR>
-autocmd FileType go nmap <F3> :GoRun <CR>
+autocmd FileType go nmap <F3> <Plug>(go-run)
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
 let g:go_list_type = "quickfix"
@@ -177,14 +181,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
-"let g:go_auto_type_info = 1
+let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
-
-
-
-" Rechtschreibprüfung für bestimmte Dateitypen
-au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=de_de
-au BufNewFile,BufRead,BufEnter   *.md      setlocal spell    spelllang=de_de
-au BufNewFile,BufRead,BufEnter   *.txt     setlocal spell    spelllang=de_de
-au BufNewFile,BufRead,BufEnter   README    setlocal spell    spelllang=en_us

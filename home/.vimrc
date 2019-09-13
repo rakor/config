@@ -162,6 +162,7 @@ autocmd FileType go inoremap [[     [
 autocmd FileType go inoremap []     []
 "Autovervollständigung
 autocmd FileType go inoremap iferr if err != nil {<CR>}<ESC>O
+autocmd FileType go inoremap iferrf if err != nil {<CR>log.Fatal(err)<CR>}<CR>
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)

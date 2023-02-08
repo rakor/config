@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Remove
+Target = *
+
+
+[Action]
+Description = Take zfs-snapshot before package-transaction
+When = PreTransaction
+Exec = /usr/local/bin/zfs-snapshotter.bash pocketroot 3 -r pacman_remove
+#Exec = /bin/sh -c 'if [[ ! $(zfs list -t snapshot | grep "pocketroot/ROOT/default@$(date "+%Y-%m-%d")_$(uname -r)" ) ]]; then zfs snapshot "pocketroot/ROOT/default@$(date "+%Y-%m-%d")_$(uname -r)"; fi'

@@ -1,0 +1,23 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = linux
+
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = intel-ucode
+
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
+Target = usr/lib/modules/*/vmlinuz
+
+[Action]
+Description = Creating a backup BE... 
+When = PreTransaction
+Exec = /usr/local/bin/zfs-snapshotter.bash pocketroot/ROOT/default 3 kernel_update
+#Exec = /bin/sh -c 'if [[ ! $(zfs list -t snapshot | grep "pocketroot/ROOT/default@$(date "+%Y-%m-%d")_$(uname -r)" ) ]]; then zfs snapshot "pocketroot/ROOT/default@$(date "+%Y-%m-%d")_$(uname -r)"; fi'

@@ -7,8 +7,15 @@ local keymap = vim.keymap.set
 
 if vim.g.neovide then
     -- Put anything you want to happen only in Neovide here
+    opt.guifont = "SauceCodePro Nerd Font:h14"
     vim.g.neovide_cursor_vfx_mode = "railgun"
+    vim.g.neovide_floating_blur_amount_x = 2.0
+
+    vim.g.neovide_opacity = 0.9
+    vim.g.neovide_normal_opacity = 0.9
 end
+
+
 -- ============================================================
 -- Allgemeine Einstellungen
 -- ============================================================
@@ -96,7 +103,7 @@ opt.autoindent = true
 opt.smartindent = true
 
 -- Schrift für Neovim-GUIs
-opt.guifont = "Monospace:h8"
+--opt.guifont = "Monospace:h8"
 
 -- Folding anhand der Syntax
 opt.foldmethod = "syntax"

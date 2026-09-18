@@ -71,9 +71,10 @@ binds {
     Mod+CTRL+Right                      { focus-monitor-right; }
     Mod+CTRL+L                          { focus-monitor-right; }
     Mod+CTRL+UP                         { focus-monitor-up; }
-    Mod+CTRL+K                          { focus-monitor-up; }
     Mod+CTRL+Down                       { focus-monitor-down; }
-    Mod+CTRL+J                          { focus-monitor-down; }
+
+    Mod+CTRL+K                          { focus-workspace-up; }
+    Mod+CTRL+J                          { focus-workspace-down; }
 
     Mod+Shift+CTRL+Left                 { move-column-to-monitor-left; }
     Mod+Shift+CTRL+Right                { move-column-to-monitor-right; }

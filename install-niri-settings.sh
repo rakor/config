@@ -1,6 +1,7 @@
 #!/bin/bash
 
-current=`dirname $0`
+filepath=`realpath $0`
+current=`dirname $filepath`
 for dir in niri fastfetch fish superfile kitty; do
 	rm -r ~/.config/$dir
 	ln -s $current/home/.config/$dir ~/.config/$dir

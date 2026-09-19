@@ -9,5 +9,5 @@
 }
 
 output "eDP-1" {
-    scale 1.2 // No scaling (use 2 for HiDPI)
+    scale 1 //.2 // No scaling (use 2 for HiDPI)
 }

@@ -20,11 +20,11 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000004]
     box_height = 0.0
     box_width = 0.0
-    cx = 116.0
-    cy = 888.0
+    cx = 139.20001220703125
+    cy = 1065.60009765625
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "sticker"
 
@@ -36,11 +36,11 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000005]
     box_height = 0.0
     box_width = 0.0
-    cx = 116.0
-    cy = 102.0
+    cx = 139.20001220703125
+    cy = 122.40000152587891
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "weather"
 
@@ -51,11 +51,11 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000006]
     box_height = 0.0
     box_width = 0.0
-    cx = 1484.0
-    cy = 116.0
+    cx = 1780.800048828125
+    cy = 139.20001220703125
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "sysmon"
 
@@ -66,11 +66,11 @@ widget_order = [
     [desktop_widgets.widget.desktop-widget-0000000000000007]
     box_height = 0.0
     box_width = 0.0
-    cx = 1484.0
-    cy = 260.0
+    cx = 1780.800048828125
+    cy = 312.0
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "sysmon"
 
@@ -138,11 +138,11 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@eDP-1" ]
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 810.0
-    cx = 800.00006103515625
-    cy = 772.49993896484375
+    cx = 960.0001220703125
+    cy = 926.99993896484375
     output = "eDP-1"
-    placement_height = 1000.0
-    placement_width = 1600.0
+    placement_height = 1200.0
+    placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
 
@@ -198,10 +198,10 @@ source = "wallpaper"
 wallpaper_scheme = "soft"
 
 [wallpaper.default]
-path = "/home/rakor/Bilder/ZPuvlY.jpg"
+path = "/home/rakor/Bilder/UNIX.png"
 
 [wallpaper.last]
-path = "/home/rakor/Bilder/ZPuvlY.jpg"
+path = "/home/rakor/Bilder/UNIX.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/rakor/Bilder/ZPuvlY.jpg"
+path = "/home/rakor/Bilder/UNIX.png"

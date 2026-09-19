@@ -28,14 +28,25 @@ opt.background = "dark"
 
 -- Farbschema
 -- Voraussetzung: Das Farbschema "molokai" ist installiert.
-local colorscheme_ok = pcall(vim.cmd.colorscheme, "molokai")
+local colorscheme_ok = pcall(vim.cmd.colorscheme, "desert")
 
 if not colorscheme_ok then
     vim.notify(
-        'Farbschema "molokai" wurde nicht gefunden; verwende Standardfarben.',
+        'Farbschema "desert" wurde nicht gefunden; verwende Standardfarben.',
         vim.log.levels.WARN
     )
 end
+
+-- Transparenter Hintergrund:
+vim.cmd([[
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight NormalNC guibg=NONE ctermbg=NONE
+    highlight SignColumn guibg=NONE ctermbg=NONE
+    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+    highlight LineNr guibg=NONE ctermbg=NONE
+    highlight FoldColumn guibg=NONE ctermbg=NONE
+    highlight VertSplit guibg=NONE ctermbg=NONE
+]])
 
 -- Syntax-Highlighting
 vim.cmd("syntax enable")

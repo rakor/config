@@ -7,7 +7,7 @@ local keymap = vim.keymap.set
 
 if vim.g.neovide then
     -- Put anything you want to happen only in Neovide here
-    opt.guifont = "SauceCodePro Nerd Font:h14"
+    opt.guifont = "SauceCodePro Nerd Font:h10"
     vim.g.neovide_cursor_vfx_mode = "railgun"
     vim.g.neovide_floating_blur_amount_x = 2.0
 
